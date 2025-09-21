@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/00acf4edec.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <title>portfolio</title>
+    
+    <style>
+        *{
+            box-sizing: border-box;
+        }
+         #loader{
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            position: fixed;
+            display: block;
+            background: #000;
+            z-index: 99;
+            text-align: center;
+        }
+        #loaderimg{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            z-index: 100;
+            color: #fff;
+            font-size: 4vh;
+        } 
+        body{
+            margin: 0;
+            padding: 0;
+            user-select:none;
+            transition: all 1s ease-in-out;
+        }
+        #home{
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            background: url(bgImage.avif);
+            background-repeat: no-repeat;
+            background-size: cover;
+            color: #b1aea9;
+            font-size: 5vmax;
+            overflow: hidden;
+        }
+        #ommer{
+            color: #0ba3df;
+        }
+        nav{
+            width: 100%;
+            height: 40px;
+            background:transparent;
+            position: fixed;
+            top: 0;
+            font-size: 2.3vmax;
+            padding: 5px 10px;
+            color: #ebe5e5;
+            z-index: 1;
+            
+            
+            /* background-color: #275711; */
+        }
+        nav ul{
+            position: absolute;
+            top: 0;
+            margin: 0;
+            padding: 0;
+            right: 10px;
+            list-style-type: none;
+        }
+        nav ul li{
+            float: left;
+            margin: 5px 10px;
+        }
+        nav ul li a{
+            text-decoration: none;
+            color: #f0e9e9;
+        }
+        nav ul li a:hover{
+            color:  #0ba3df;
+            font-size: 2.4vmax;
+        }
+        #content{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            text-align: center; 
+            font-weight: 900;
+        }
+        #status{
+            display: flex;
+            flex-wrap: nowrap;
+            width: 100vw;
+            animation: moving 15s infinite 2s forwards;
+            font-size: 3vmax;
+            color: #b33939;
+            margin-top: 10px;
+            letter-spacing: 0.25vw;
+        }
+        #status span{
+            min-width: 100%;
+            justify-content: center;
+        }
+        @keyframes moving {
+            0%{
+                opacity: 1;
+                transform: translate(0);
+            }
+            10%{
+                opacity: 0;
+            }
+            25%{
+                opacity: 1;
+                transform: translate(-100%);
+            }
+            35%{
+                opacity: 0;
+            }
+            50%{
+                opacity: 1;
+                transform: translate(-200%);
+            }
+            60%{
+                opacity: 0;
+            }
+            75%{
+                opacity: 1;
+                transform: translate(-300%);
+            }
+            85%{
+                opacity: 0;
+            }
+            100%{
+                opacity: 1;
+                transform: translateX(-400%);
+            }
+        }
+        #about{
+            background-color: #ad9e5e;
+            height: 100vh;
+        }
+        #abo{
+            color: red;
+            padding-left: 20px;
+            padding-bottom: -20px;
+            padding-top: 20px;
+        }
+        .about-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 85%;
+  margin: 40px auto;
+  gap: 40px;
+  
+}
+
+.about-text {
+  flex: 1;
+  font-size: 1.2rem;
+  line-height: 1.6;
+}
+
+.about-omimg {
+  flex: 0 0 300px; /* fixed width for right column */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#profile {
+  width: 250px;
+  height: 250px;
+  border-radius: 100%;
+  box-shadow: 0 0 10px #000;
+}
+
+.resume-btn {
+  margin-top: 15px;
+  padding: 10px 20px;
+  background: #54a0ff;
+  color: white;
+  font-weight: bold;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.resume-btn:hover {
+  background: #2e86de;
+}
+
+/* 📱 Responsive (mobile) */
+@media (max-width: 800px) {
+  .about-container {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .about-text {
+    font-size: 1rem;
+  }
+}
+
+
+        #skills{
+            min-height: 100vh;
+            position: relative;
+            width: 100%;
+            background:#54a0ff;
+            overflow: hidden;
+        }
+        #flex{
+            width: 100%;
+            min-height: 100vh;
+            display: flex;
+            flex-wrap: wrap;
+            padding-top: 130px;
+        }
+        .icons{
+            width: 144px;
+            height: 144px;
+            margin-right: 5px;
+        }
+        progress{
+            height: 8px;
+            position: absolute;
+            top: 70px;
+            width: 300px;
+        }
+        progress[value] {
+            appearance: none;
+            border: none;
+        }
+        progress[value]::-webkit-progress-bar {
+            background-color: #eee;
+            border-radius: 2px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset;
+        }
+        progress[value]::-webkit-progress-value {
+            background: -webkit-linear-gradient(60deg, #56ab2f, #a8e063);
+            border-radius: 2px;   
+        }
+        .icon{
+            margin: 0px 200px;
+            position: relative;
+        }
+        #skills header{
+            position: absolute;
+            top: 60px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #c23616;
+            font-weight: 900;
+        }
+        #projects{
+            min-height: 100vh;
+            position: relative;
+            width: 100%;
+            background-color: #4a86a4;
+            /* background-color: #ad9e5e; */
+        }
+        #projects header{
+            position: absolute;
+            top: 60px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #c23616;
+            font-weight: 900;
+        }
+        #pp{
+            min-height: 100vh;
+            width: 100%;
+            padding-top: 130px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .p{
+            width: 250px;
+            height: 250px;
+            border-radius:20px;
+        }
+        .container{
+            position: relative;
+            margin: 30px;
+        }
+        .hover{
+            position: absolute;
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            font-size: 3vmax;
+            text-align: center;
+            opacity: 0;
+           
+        }
+        .container:hover .p{
+            opacity: 0.5;
+            filter: blur(10px);
+        }
+        .container:hover .hover{
+            opacity: 1;
+        }
+        #contact{
+            position: relative;
+            width: 100%;
+            min-height: 100vh;
+            background: #95afc0;
+        }
+        #contact header{
+            position: absolute;
+            top: 60px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #c23616;
+            font-weight: 900;
+        }
+        form{
+            background: #eee;
+            width: 400px;
+            height: 550px;
+            margin-top: 120px;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        input{
+            border: none;
+            background: #ccc;
+            width: 90%;
+            border-radius: 10px;
+            margin: 12px 0;
+            height: 30px;
+            font-size: 1.7vmax;
+            padding: 10px;
+        }
+        #msg{
+            border: none;
+            background: #ccc;
+            border-radius: 10px;
+            padding: 10px;
+            width: 90%;
+            margin: 12px 0;
+            font-size: 1.6vmax;
+            height: 160px;
+            resize: none;
+        }
+        input[type="text"], input[type="email"],input[type="submit"], textarea, select {
+            outline: none;
+        }
+        #submit{
+            width: 100px;
+            padding: 3px;
+            border-radius: 0px;
+            color:  #c23616;
+            background: rgb(169, 136, 201);
+            margin-bottom: 25px;
+        }
+        #f{
+            width: 100%;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            padding-bottom: 20px;
+        }
+        .head{
+            font-size: 3vmax;
+        }
+        @media screen and (max-width:800px){
+            nav{
+                font-size: 3vmax;
+                padding: 5px 10px;
+            }
+            nav ul{
+            position: absolute;
+            top: 0;
+            margin:0;
+            padding:10px 20px;
+            left: 0;
+            list-style-type: none;
+            background: white;
+            height: 100vh;
+            width: 50%;
+            transform: translateX(-110%);
+            transition: all 1s ease;
+        }
+        nav ul li{
+            padding: 15px 20px;
+            /*border-bottom: 1px solid #000;*/
+        }
+        nav ul li a:hover{
+            color:  #f1c40f;
+            font-size: 3.5vmax;
+        }
+        #m{
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 35px;
+            height: 25px;
+            background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHg9IjBweCIgeT0iMHB4Igp3aWR0aD0iNTAiIGhlaWdodD0iNTAiCnZpZXdCb3g9IjAgMCAxNzIgMTcyIgpzdHlsZT0iIGZpbGw6IzAwMDAwMDsiPjxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0ibm9uemVybyIgc3Ryb2tlPSJub25lIiBzdHJva2Utd2lkdGg9IjEiIHN0cm9rZS1saW5lY2FwPSJidXR0IiBzdHJva2UtbGluZWpvaW49Im1pdGVyIiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiIHN0cm9rZS1kYXNoYXJyYXk9IiIgc3Ryb2tlLWRhc2hvZmZzZXQ9IjAiIGZvbnQtZmFtaWx5PSJub25lIiBmb250LXdlaWdodD0ibm9uZSIgZm9udC1zaXplPSJub25lIiB0ZXh0LWFuY2hvcj0ibm9uZSIgc3R5bGU9Im1peC1ibGVuZC1tb2RlOiBub3JtYWwiPjxwYXRoIGQ9Ik0wLDE3MnYtMTcyaDE3MnYxNzJ6IiBmaWxsPSJub25lIj48L3BhdGg+PGcgZmlsbD0iI2IzMzkzOSI+PHBhdGggZD0iTTAsMzAuOTZ2Ni44OGgxNzJ2LTYuODh6TTAsODIuNTZ2Ni44OGgxNzJ2LTYuODh6TTAsMTM0LjE2djYuODhoMTcydi02Ljg4eiI+PC9wYXRoPjwvZz48L2c+PC9zdmc+') 50% 50% no-repeat;
+            background-size: 100% 100%;
+        }
+        #m:hover+ul{
+            transform: translateX(0);
+        }
+        ul:hover{
+            transform: translateX(0);
+        }
+        #profile {
+        width: 150px;
+        height: 200px;
+        float: right;
+        margin-left: 15px;
+        border-radius: 5px;
+        box-shadow: 0 0 3px #000;
+        }
+        #home{
+            font-size: 6vmax;
+        }
+        #status{
+            font-size: 3vmax;
+        }
+        .head{
+            font-size: 4.5vmax;
+        }
+        #details {
+            top: 80px;
+            width: 95%;
+            font-size: 3vmax;
+        }
+        .icon {
+            margin: 0px 200px 0 20px;
+        }
+        .icons {
+            width: 100px;
+            height: 100px;
+        }
+        progress {
+            height: 6px;
+            top: 50px;
+            width: 200px;
+        }
+        form {
+            width: 300px;
+            height: 500px;
+            margin-top: 100px;
+            padding: 10px;
+        }
+        input {
+            border-radius: 10px;
+            margin: 10px 0;
+            font-size: 2vmax;
+        }
+        #msg{
+            font-size: 2vmax;
+        }
+        }
+        .abc{
+          color: aqua;
+        }
+        .social-icon {
+    display: flex;
+    flex-direction: row;
+    gap: 15px; /* space between icons */
+    justify-content: center;
+    margin-top: 15px;
+}
+
+.social-icon a {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;  /* fixed width */
+    height: 40px; /* fixed height */
+    border-radius: 50%; /* circular */
+    background: #f0f0f0;
+    transition: transform 0.3s, ;
+}
+
+.social-icon a:hover {
+    transform: scale(1.2); /* grow slightly on hover */
+    background: #ddd;       /* subtle background change */
+}
+
+.social-icon img {
+    width: 20px; /* smaller icon size */
+    height: 20px;
+}
+
+    </style>
+</head>
+<body>
+    <!-- <div id="loader">
+        <div id="loaderimg">Loading...</div>
+    </div> -->
+    <div id="home">
+        <div id="content">
+        Hello, I am<br>
+        <span id="ommer">Ommer Sideeq </span><br>
+        <div id="status">
+        <span>A Web Developer</span>
+        <span> Software Engineering Student</span>
+        <!-- <span>A Interactive Designer</span> -->
+        <span>A Web Developer</span>
+        <span>A Creative Guy</span>
+        
+    </div></div>
+    </div>
+    <nav id="a">Port<span class="abc">Folio</span>
+        <div id="m"></div>
+        <ul id="u">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+    <div id="about">
+  <header class="head" id="abo">ABOUT ME</header>
+
+  <div class="about-container">
+    <!-- LEFT COLUMN -->
+    <div class="about-text">
+      Hi, I'm <span>Ommer Sideeq</span>, a 3rd-year B.Tech student at NIT Srinagar, passionate about building a career in software development. I enjoy exploring how code can bring ideas to life and solve real-world problems.
+      <br><br>
+      My current focus is on front-end web development using HTML, CSS, and JavaScript, and I’m actively learning backend technologies to become a full-stack developer. Alongside web development, I have a solid understanding of Data Structures and Algorithms (DSA) using C++, which helps me write efficient and optimized code.
+      <br><br>
+      <!-- What sets me apart is my self-driven mindset, consistency, and curiosity to grow. I believe in learning by doing, which is why I build practical projects, track my progress, and always look for ways to improve. -->
+      <!-- <br><br> -->
+      Outside of academics and code, I enjoy nature walks, improving my communication skills through video creation, and staying updated with the latest tech trends.
+      <br><br>
+      Currently, I’m open to internship opportunities, collaborations, or connecting with fellow learners and professionals in tech.
+    </div>
+
+    <!-- RIGHT COLUMN -->
+    <div class="about-omimg">
+      <img id="profile" src="ommer.jpg" alt="Profile Picture">
+      <a href="resume.pdf" class="resume-btn">Download Resume</a>
+    </div>
+  </div>
+</div>
+
+    <div id="skills">
+        <header class="head">SKILLS</header>
+        <div id="flex">
+        <div class="icon" data-aos="fade-right">
+        <img class="icons" src="https://img.icons8.com/color/144/000000/c-plus-plus-logo.png"/><progress value="85"max="100"></progress></div>
+         <div class="icon" data-aos="fade-left">
+        <img class="icons" src="https://img.icons8.com/color/144/000000/nodejs.png"/><progress value="80"max="100"></progress></div>
+        <div class="icon" data-aos="fade-right">
+        <img class="icons" src="https://img.icons8.com/color/144/000000/html-5.png"/><progress value="85"max="100"></progress></div>
+        <div class="icon" data-aos="fade-left">
+        <img class="icons" src="https://img.icons8.com/color/144/000000/css3.png"/><progress value="80"max="100"></progress></div>
+        <div class="icon" data-aos="fade-right">
+        <img class="icons" src="https://img.icons8.com/color/144/000000/javascript.png"/><progress value="75"max="100"></progress></div>
+        <div class="icon" data-aos="fade-left">
+        <img class="icons" src="https://img.icons8.com/color/144/000000/python.png"/><progress value="75"max="100"></progress></div>
+        <div class="icon" data-aos="fade-right">
+        <img class="icons" src="https://img.icons8.com/color/144/000000/c-programming.png"/><progress value="60"max="100"></progress></div>
+        <div class="icon" data-aos="fade-left">
+        <img class="icons" src="https://img.icons8.com/color/144/000000/mysql-logo.png"/><progress value="60"max="100"></progress></div>
+    </div>
+    </div>
+    <div id="projects">
+        <header class="head">PROJECTS</header>
+        <div id="pp">
+        <!-- <div class="container" data-aos="flip-left" >
+        <img src="https://www.dropbox.com/s/6dogats1x34ja6f/food%20website.jpeg?raw=1" class="p" alt=""><span class="hover">Online Food Website</span></div> -->
+        <div class="container" data-aos="zoom-in">
+        <a href="https://ommer-sideeq.github.io/Tour-And-Travel/">        <img src="tourrrr.jpeg" class="p" alt=""><span class="hover">Tour-And-Travel</span></div>
+</a>
+        <div class="container" data-aos="zoom-in">
+        <a href="https://ommer-sideeq.github.io/Coffee-Maker/">        <img src="https://www.dropbox.com/s/elzd2yb6pjh9zru/owl.jpeg?raw=1" class="p"  alt=""><span class="hover">Coffee Maker clone</span></div>
+</a>
+        <!-- <div class="container" data-aos="flip-right">
+        <img src="https://www.dropbox.com/s/y5ss4dt8nn3uqqw/music%20player.jpeg?raw=1" class="p" alt=""><span class="hover">Mountains clone</span></div>
+        <div class="container" data-aos="flip-left">
+        <img src="https://www.dropbox.com/s/t6yzxwmxhfq3yza/coffee.jpeg?raw=1" class="p" alt=""><span class="hover">Owl clone</span></div> 
+        <div class="container" data-aos="flip-right">
+        <img src="https://www.dropbox.com/s/7g3l1spvcrft8rz/form.jpeg?raw=1" class="p"  alt=""><span class="hover">Form Design</span></div> -->
+    </div>
+    </div>
+    <div id="contact">
+        <header class="head">Contact Me</header>
+        <div id="f">
+        <form onsubmit="norefresh(); return false;">
+            <input type="text" placeholder="name"><br>
+            <input type="email" placeholder="email"><br>
+            <input type="text" placeholder="subject"><br>
+            <textarea name="msg" id="msg" cols="30" rows="10"placeholder="message"></textarea>
+            <input type="submit"value="submit"id="submit"><br>
+            <span style="font-size: 2vmax;">Get In Touch</span>
+            <div class="social-icon" >
+            <a href="https://instagram.com/ommer_0xs" target="_blank"> <img src="instagram-svgrepo-com.svg" alt="instagram"></a>
+            <a href="https://linkedin.com/in/ommer-sideeq" target="_blank"> <img  src="linkedin-svgrepo-com.svg" alt="instagram"></a>
+            <a href="https://github.com/Ommer-Sideeq" target="_blank"> <img src="github-svgrepo-com.svg" alt="instagram"></a>
+
+            <!-- <img src="https://img.icons8.com/color/48/000000/twitter.png"/>
+            <img src="https://img.icons8.com/ios-filled/48/000000/github.png"/> -->
+            </div>
+        </form>
+    </div>
+    </div>
+    <script>
+        $(window).on('load',function(){
+            $('#loader').hide();
+        });
+    </script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+    AOS.init({
+        duration: 800
+    });
+    </script>
+    <script>
+        function norefresh(){
+        }
+        window.onscroll = function (e) {
+            h=window.innerHeight;
+            sh=window.scrollY;
+            var nav=document.getElementById('a');
+            if(sh>200 && sh<h+200){
+                nav.style.background="#ad9e5e";
+                nav.style.boxShadow="0 0 5px #666";
+            }
+            else if(sh>h+200 && sh<h*2+200){
+                nav.style.background="#54a0ff";
+                nav.style.boxShadow="0 0 5px #666";
+            }
+            else if(sh>h*2+200 && sh<h*3+200){
+                nav.style.background="#4a86a4";
+                nav.style.boxShadow="0 0 5px #666";
+            }
+            else if(sh>h*3+200){
+                nav.style.background="#95afc0";
+                nav.style.boxShadow="0 0 5px #666";
+            }
+            else{
+                nav.style.background="transparent";
+                nav.style.boxShadow="none";
+            }
+        };
+    </script>
+</body>
+</html>
